@@ -1,1 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login y Register con Firebase</title>
+  <!-- Importar Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+  
+  <script>
+    // Configuración de Firebase (puedes obtener estos datos en tu consola de Firebase)
+    const firebaseConfig = {
+      apiKey: "AIzaSyDJUlu-QLyaJRh4ftPZXeMEI9NeZhE_G0E",
+      authDomain: "stellarcenter-565a6.firebaseapp.com",
+      projectId: "stellarcenter-565a6",
+      storageBucket: "stellarcenter-565a6.firebasestorage.app",
+      messagingSenderId: "777506543836",
+      appId: "1:777506543836:web:5e058f1f245bf202b43c19",
+      measurementId: "G-SEP7QJ7BXF"
+    };
+
+    // Inicializar Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+  </script>
+</head>
+<body>
+  <h1>Login y Register con Firebase</h1>
+
+  <!-- Formulario de Registro -->
+  <h2>Registro</h2>
+  <form id="register-form">
+    <input type="email" id="register-email" placeholder="Correo electrónico" required><br><br>
+    <input type="password" id="register-password" placeholder="Contraseña" required><br><br>
+    <button type="submit">Registrar</button>
+  </form>
+
+  <!-- Formulario de Login -->
+  <h2>Iniciar sesión</h2>
+  <form id="login-form">
+    <input type="email" id="login-email" placeholder="Correo electrónico" required><br><br>
+    <input type="password" id="login-password" placeholder="Contraseña" required><br><br>
+    <button type="submit">Iniciar sesión</button>
+  </form>
+
+  <div id="user-info"></div>
+
+  <script>
+    // Registro de usuario
+    document.getElementById("register-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = document.getElementById("register-email").value;
+      const password = document.getElementById("register-password").value;
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          alert("Usuario registrado exitosamente");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          alert(`Error: ${errorMessage}`);
+        });
+    });
+
+    // Iniciar sesión de usuario
+    document.getElementById("login-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          document.getElementById("user-info").innerHTML = `Bienvenido, ${user.email}`;
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          alert(`Error: ${errorMessage}`);
+        });
+    });
+  </script>
+</body>
+</html>
 
