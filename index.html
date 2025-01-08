@@ -63,6 +63,9 @@
           const user = userCredential.user;
           // Mostrar mensaje de éxito
           document.getElementById("success-message").textContent = `¡Cuenta creada con éxito! Bienvenido, ${user.email}`;
+
+          // Redirigir al menú
+          window.location.href = "menu.html"; // Asegúrate de tener el archivo "menu.html"
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -87,6 +90,9 @@
         .then((userCredential) => {
           const user = userCredential.user;
           document.getElementById("user-info").innerHTML = `Bienvenido, ${user.email}`;
+
+          // Redirigir al menú
+          window.location.href = "menu.html"; // Asegúrate de tener el archivo "menu.html"
         })
         .catch((error) => {
           const errorCode = error.code;
