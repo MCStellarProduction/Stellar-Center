@@ -55,12 +55,14 @@
 
     .carousel {
       display: flex;
+      flex-wrap: nowrap; /* No se va a envolver */
       overflow-x: auto;
       gap: 20px;
       padding: 20px 0;
       scroll-behavior: smooth;
       -ms-overflow-style: none;  /* Para ocultar la barra de desplazamiento en IE */
       scrollbar-width: none;      /* Para ocultar la barra de desplazamiento en Firefox */
+      white-space: nowrap; /* Para que los elementos no se envuelvan y se alineen horizontalmente */
     }
 
     .carousel::-webkit-scrollbar {
