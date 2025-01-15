@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Servidor Desconectado</title>
     <!-- Fuentes de Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -21,6 +21,7 @@
             height: 100vh;
             color: white;
             overflow: hidden;
+            user-select: none; /* Deshabilitar selección de texto */
         }
 
         /* Estilo para la pantalla de carga */
@@ -39,6 +40,7 @@
             color: #FFF;
             animation: fadeIn 2s ease-out;
             border-radius: 15px;
+            transform: translate(-50%, -50%); /* Centramos exactamente la pantalla */
         }
 
         /* Animación de desvanecimiento */
