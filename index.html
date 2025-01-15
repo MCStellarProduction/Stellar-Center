@@ -23,7 +23,7 @@
             overflow: hidden;
         }
 
-        /* Animación de carga */
+        /* Estilo para la pantalla de carga */
         #loading {
             position: absolute;
             top: 0;
@@ -37,20 +37,53 @@
             font-size: 40px;
             font-weight: 600;
             color: #FFF;
-            animation: fadeIn 2s ease-out, spin 2s ease-in-out infinite;
+            animation: fadeIn 2s ease-out;
             border-radius: 15px;
         }
 
-        /* Animación para el fade in */
+        /* Animación de desvanecimiento */
         @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
         }
 
-        /* Animación de giro */
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        /* Animación de giro SVG */
+        svg {
+            width: 3.25em;
+            transform-origin: center;
+            animation: rotate4 2s linear infinite;
+        }
+
+        circle {
+            fill: none;
+            stroke: hsl(214, 97%, 59%);
+            stroke-width: 2;
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+            stroke-linecap: round;
+            animation: dash4 1.5s ease-in-out infinite;
+        }
+
+        @keyframes rotate4 {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes dash4 {
+            0% {
+                stroke-dasharray: 1, 200;
+                stroke-dashoffset: 0;
+            }
+
+            50% {
+                stroke-dasharray: 90, 200;
+                stroke-dashoffset: -35px;
+            }
+
+            100% {
+                stroke-dashoffset: -125px;
+            }
         }
 
         /* Estilo para el contenido principal */
@@ -110,13 +143,16 @@
 
     <!-- Pantalla de carga -->
     <div id="loading">
-        <span>Cargando...</span>
+        <!-- SVG de carga con animación -->
+        <svg viewBox="25 25 50 50">
+            <circle r="20" cy="50" cx="50"></circle>
+        </svg>
     </div>
 
     <!-- Contenido del mensaje -->
     <div id="content">
         <span class="material-symbols-outlined">block</span>
-        <h1>Servidor Desconectado</h1>
+        <h1> Servidor Desconectado </h1>
         <p>This server is off.</p>
         <p>Try another moment...</p>
     </div>
