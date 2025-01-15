@@ -1,1 +1,119 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servidor Desconectado</title>
+    <!-- Fuentes de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #FFA500, #800080); /* Degradado de naranja a morado */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        /* Estilo para la pantalla de carga */
+        #loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            font-weight: 600;
+            border-radius: 15px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Animación para el fade in */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Estilo para el contenido principal */
+        #content {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            animation: fadeInContent 1.5s ease-in-out;
+        }
+
+        /* Animación para el contenido */
+        @keyframes fadeInContent {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estilo para los encabezados */
+        h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+            color: #FF6347; /* Color para el texto del título */
+        }
+
+        /* Estilo para el texto adicional */
+        p {
+            font-size: 22px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        /* Estilo de los botones, si los deseas agregar en el futuro */
+        .btn {
+            background-color: #800080;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #FF6347;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Pantalla de carga -->
+    <div id="loading">
+        <span>Cargando...</span>
+    </div>
+
+    <!-- Contenido del mensaje -->
+    <div id="content">
+        <h1>🚫 Servidor Desconectado 🚫</h1>
+        <p>This server is not Available!!</p>
+        <p>Try another moment...</p>
+    </div>
+
+    <script>
+        // Mostrar el contenido después de 5 segundos
+        setTimeout(function() {
+            document.getElementById('loading').style.display = 'none';  // Ocultar la pantalla de carga
+            document.getElementById('content').style.display = 'block';  // Mostrar el contenido
+        }, 5000);  // 5000 milisegundos = 5 segundos
+    </script>
+</body>
+</html>
