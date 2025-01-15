@@ -1,253 +1,38 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Menu Estilo Netflix</title>
+  <title>Home</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <style>
-    /* Estilo global */
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #141414;
-      color: white;
-      height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* Barra de navegación */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: #141414;
-      padding: 20px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      box-sizing: border-box;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    }
-
-    .navbar img {
-      width: 120px;
-    }
-
-    .navbar .menu-icons i {
-      font-size: 1.6rem;
-      color: white;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .navbar .menu-icons i:hover {
-      transform: scale(1.2);
-    }
-
-    /* Carrusel de contenido */
-    .carousel-container {
-      padding: 100px 30px 30px 30px;
-    }
-
-    .carousel {
-      display: flex;
-      flex-wrap: nowrap; /* No se va a envolver */
-      overflow-x: auto;
-      gap: 20px;
-      padding: 20px 0;
-      scroll-behavior: smooth;
-      -ms-overflow-style: none;  /* Para ocultar la barra de desplazamiento en IE */
-      scrollbar-width: none;      /* Para ocultar la barra de desplazamiento en Firefox */
-      white-space: nowrap; /* Para que los elementos no se envuelvan y se alineen horizontalmente */
-    }
-
-    .carousel::-webkit-scrollbar {
-      display: none;  /* Ocultar barra de desplazamiento en Chrome, Safari y Opera */
-    }
-
-    .carousel-item {
-      position: relative;
-      width: 300px; /* 16:9 aspect ratio -> 300px ancho */
-      height: 169px; /* 16:9 aspect ratio -> 169px alto */
-      border-radius: 10px;
-      overflow: hidden;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .carousel-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .carousel-item:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.9);
-    }
-
-    /* Títulos dentro del carrusel */
-    .carousel-item .info {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
-      padding: 10px;
-      text-align: left;
-    }
-
-    .carousel-item .info h3 {
-      font-size: 1.1rem;
-      font-weight: bold;
-      margin: 0;
-    }
-
-    .carousel-item .info p {
-      font-size: 0.9rem;
-      margin: 5px 0 0;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .carousel-item {
-        width: 250px; /* Ajustar tamaño para pantallas pequeñas */
-        height: 140px;
-      }
-
-      .navbar {
-        padding: 15px;
-      }
-    }
-  </style>
 </head>
-<body>
-
-  <!-- Barra de navegación -->
-  <div class="navbar">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Logo Netflix">
-    <div class="menu-icons">
-      <i class="fas fa-search" title="Buscar"></i>
-      <i class="fas fa-user-circle" title="Perfil"></i>
-    </div>
-  </div>
-
-  <!-- Carrusel de contenido -->
-  <div class="carousel-container">
-    <h2>Popular</h2>
-    <div class="carousel" id="carouselPopular">
-      <div class="carousel-item">
-        <img src="https://via.placeholder.com/300x169?text=Película+1" alt="Película 1">
-        <div class="info">
-          <h3>Película 1</h3>
-          <p>Descripción breve de la película.</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="https://via.placeholder.com/300x169?text=Película+2" alt="Película 2">
-        <div class="info">
-          <h3>Película 2</h3>
-          <p>Descripción breve de la película.</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="https://via.placeholder.com/300x169?text=Película+3" alt="Película 3">
-        <div class="info">
-          <h3>Película 3</h3>
-          <p>Descripción breve de la película.</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="https://via.placeholder.com/300x169?text=Película+4" alt="Película 4">
-        <div class="info">
-          <h3>Película 4</h3>
-          <p>Descripción breve de la película.</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="https://via.placeholder.com/300x169?text=Película+5" alt="Película 5">
-        <div class="info">
-          <h3>Película 5</h3>
-          <p>Descripción breve de la película.</p>
-        </div>
+  <body>
+    <img scr="img/stellar_center.png" height="360" width="500">
+    <div class="main_container">
+      <h1>NEW'S</h1>
+      <p>This is the MCStellar Production News Feed</p>
+      <div class="new-block">
+        <img src="news-img/000.jpg">
+        <h2>TITLE</h2>
+        <p>Desc Text</p>
       </div>
     </div>
-  </div>
-
-  <div class="carousel-container">
-    <h2>Series</h2>
-    <div class="carousel" id="carouselSeries">
-      <div class="carousel-item">
-        <img src="https://via.placeholder.com/300x169?text=Serie+1" alt="Serie 1">
-        <div class="info">
-          <h3>Serie 1</h3>
-          <p>Descripción breve de la serie.</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="https://via.placeholder.com/300x169?text=Serie+2" alt="Serie 2">
-        <div class="info">
-          <h3>Serie 2</h3>
-          <p>Descripción breve de la serie.</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="https://via.placeholder.com/300x169?text=Serie+3" alt="Serie 3">
-        <div class="info">
-          <h3>Serie 3</h3>
-          <p>Descripción breve de la serie.</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="https://via.placeholder.com/300x169?text=Serie+4" alt="Serie 4">
-        <div class="info">
-          <h3>Serie 4</h3>
-          <p>Descripción breve de la serie.</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="https://via.placeholder.com/300x169?text=Serie+5" alt="Serie 5">
-        <div class="info">
-          <h3>Serie 5</h3>
-          <p>Descripción breve de la serie.</p>
-        </div>
+    <br>
+    <div class="video_container">
+      <h1>Last Video</h1>
+      <p>Here you find the last video of the MCStellar Production</p>
+      <div class="last-video-container">
+        <img src="thumbnails/000.jpg">
+        <h2>TITLE</h2>
+        <p>Desc Text</p>
       </div>
     </div>
-  </div>
-
-  <script>
-    // Variables para los carruseles
-    const carouselPopular = document.getElementById('carouselPopular');
-    const carouselSeries = document.getElementById('carouselSeries');
-
-    // Función para mover el carrusel hacia la derecha
-    function moveCarouselRight(carousel) {
-      const scrollAmount = 320; // Ajustar según el tamaño de los elementos
-      carousel.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth',
-      });
-    }
-
-    // Función para mover el carrusel hacia la izquierda
-    function moveCarouselLeft(carousel) {
-      const scrollAmount = 320; // Ajustar según el tamaño de los elementos
-      carousel.scrollBy({
-        left: -scrollAmount,
-        behavior: 'smooth',
-      });
-    }
-
-    // Agregar eventos de desplazamiento al carrusel de películas y series
-    setInterval(() => moveCarouselRight(carouselPopular), 5000); // Movimiento automático cada 5 segundos
-    setInterval(() => moveCarouselRight(carouselSeries), 5000); // Movimiento automático cada 5 segundos
-  </script>
-
-</body>
+    <br>
+    <div class="stellar_client">
+      <img src="stellar-client/000.jpg">
+      <button class="btn_stellar_client" onclick="window.location.href='example.com';">Ir a Stellar Client</button>
+      <p>Here you can find the stellar client, where you can log in to your client account to enter MCStellar Production Minecraft events.</p>
+    </div>
+  </body>
 </html>
