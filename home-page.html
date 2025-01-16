@@ -113,40 +113,37 @@
             box-shadow: 0 0 20px rgba(138, 43, 226, 0.8);
         }
 
-        /* Footer and Stellar Client merged Section */
-        .footer-stellar-client {
+        /* Stellar Client Section (fused with Footer) */
+        .stellar-client {
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: space-between;
             width: 100%;
-            height: auto;
-            padding: 20px;
+            height: 400px; /* Similar a la altura del cuadro de bienvenida */
             background: linear-gradient(to bottom right, #8A2BE2, #000000);
             border-radius: 20px;
             box-sizing: border-box;
+            padding: 20px;
             margin-top: 20px;
         }
 
-        .footer-stellar-client .line {
+        .stellar-client .line {
             border-left: 2px solid white;
             height: 120px;
             margin-left: 20px;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%); /* Centrar la línea */
         }
 
-        .footer-stellar-client img {
+        .stellar-client img {
             width: 200px;
             height: 112px;
             border-radius: 10px;
         }
 
-        .footer-stellar-client .text {
+        .stellar-client .text {
             color: white;
             font-size: 18px;
-            margin-left: 20px;
             max-width: 400px;
+            margin-left: 20px;
         }
 
         /* Mobile adjustments */
@@ -183,23 +180,24 @@
                 height: 150px; /* Ajustar la altura de los items del carrusel */
             }
 
-            .footer-stellar-client {
+            .stellar-client {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
+                height: auto;
             }
 
-            .footer-stellar-client .line {
+            .stellar-client .line {
                 display: none; /* Ocultar la línea en dispositivos móviles */
             }
 
-            .footer-stellar-client img {
+            .stellar-client img {
                 width: 100%;
                 height: auto;
                 margin-bottom: 20px;
             }
 
-            .footer-stellar-client .text {
+            .stellar-client .text {
                 font-size: 16px;
                 max-width: 100%;
             }
@@ -210,8 +208,8 @@
                 justify-content: space-between;
             }
 
-            .footer-stellar-client .text,
-            .footer-stellar-client img {
+            .stellar-client .text,
+            .stellar-client img {
                 display: flex;
                 justify-content: flex-start;
             }
@@ -260,8 +258,8 @@
         </div>
     </div>
 
-    <!-- Footer and Stellar Client Merged Section -->
-    <div class="footer-stellar-client">
+    <!-- Stellar Client Section -->
+    <div class="stellar-client">
         <img src="https://via.placeholder.com/200x112" alt="Stellar Client Image" />
         <div class="line"></div>
         <div class="text">
