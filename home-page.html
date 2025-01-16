@@ -79,13 +79,13 @@
         .card {
             position: relative;
             width: 100%;
-            padding-top: 177.77%; /* 9:16 Aspect Ratio */
             background-size: cover;
             background-position: center;
             border-radius: 10px;
             overflow: hidden;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, padding-top 0.3s ease; /* Smooth transition */
+            padding-top: 177.77%; /* 9:16 Aspect Ratio */
         }
 
         .card .overlay {
@@ -127,7 +127,7 @@
             font-size: 16px;
         }
 
-        /* Hover effect to scale the card to 16:9 ratio */
+        /* Hover effect to smoothly transition to 16:9 aspect ratio */
         .card:hover {
             transform: scale(1.05);
             padding-top: 56.25%; /* 16:9 Aspect Ratio */
