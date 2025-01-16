@@ -14,6 +14,7 @@
             margin: 0;
             padding: 0;
             background-color: #f5f5f5;
+            overflow-x: hidden; /* Deshabilita el desplazamiento horizontal */
         }
 
         /* Header Section */
@@ -26,6 +27,7 @@
             align-items: center;
             padding: 20px;
             margin-bottom: 20px;
+            box-sizing: border-box;
         }
 
         .header .content {
@@ -62,6 +64,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
             padding: 20px;
+            box-sizing: border-box;
         }
 
         .section h2 {
@@ -121,6 +124,7 @@
             justify-content: flex-end;
             padding: 20px;
             border-radius: 20px;
+            box-sizing: border-box;
         }
 
         .footer .line {
@@ -140,6 +144,62 @@
 
         .footer .btn-glow {
             margin-top: 20px;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .header {
+                height: auto;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .header img {
+                width: 100%;
+                height: auto;
+                margin-bottom: 20px;
+            }
+
+            .header-text {
+                font-size: 18px;
+                max-width: 100%;
+                margin-top: 20px;
+            }
+
+            .section {
+                height: auto;
+                padding: 15px;
+            }
+
+            .carousel {
+                height: 150px; /* Ajustar el tamaño del carrusel en móvil */
+            }
+
+            .carousel-item {
+                height: 150px; /* Ajustar la altura de los items del carrusel */
+            }
+
+            .footer {
+                height: auto;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer .line {
+                display: none; /* Ocultar la línea en dispositivos móviles */
+            }
+
+            .footer-text {
+                font-size: 18px;
+                max-width: 100%;
+                margin-bottom: 15px;
+            }
+
+            .btn-glow {
+                font-size: 16px;
+                padding: 12px;
+            }
         }
     </style>
 </head>
