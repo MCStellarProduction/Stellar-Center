@@ -14,7 +14,7 @@
             margin: 0;
             padding: 0;
             background-color: #f5f5f5;
-            overflow-x: hidden; /* Deshabilita el desplazamiento horizontal */
+            overflow-x: hidden;
         }
 
         /* Header Section */
@@ -58,11 +58,7 @@
         /* Novedades and Videos sections */
         .section {
             width: 100%;
-            height: 200px;
-            background-color: white;
-            border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            height: auto;
             padding: 20px;
             box-sizing: border-box;
         }
@@ -73,39 +69,76 @@
             margin-bottom: 15px;
         }
 
-        /* Carousel */
-        .carousel {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        /* Card style */
+        .card {
             position: relative;
-        }
-
-        .carousel-images {
-            display: flex;
-            transition: transform 1s ease-in-out;
-        }
-
-        .carousel-item {
             width: 100%;
-            height: 100%;
+            padding-top: 177.77%; /* 9:16 Aspect Ratio */
             background-size: cover;
             background-position: center;
             border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .card .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .card:hover .overlay {
+            opacity: 1;
+        }
+
+        .card .info {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .info {
+            opacity: 1;
+        }
+
+        .card .info h3 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        .card .info p {
+            font-size: 16px;
         }
 
         /* Button with glow effect */
         .btn-glow {
             background-color: #8A2BE2;
             color: white;
-            padding: 12px 25px; /* Reducción del tamaño del botón */
+            padding: 12px 25px;
             font-size: 18px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
             transition: box-shadow 0.3s ease;
             text-decoration: none;
-            display: inline-block; /* Botón de tamaño adecuado */
+            display: inline-block;
             text-align: center;
         }
 
@@ -113,13 +146,13 @@
             box-shadow: 0 0 20px rgba(138, 43, 226, 0.8);
         }
 
-        /* Stellar Client Section (fused with Footer) */
+        /* Stellar Client Section */
         .stellar-client {
             display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            height: 400px; /* Similar a la altura del cuadro de bienvenida */
+            height: 400px;
             background: linear-gradient(to bottom right, #8A2BE2, #000000);
             border-radius: 20px;
             box-sizing: border-box;
@@ -168,16 +201,12 @@
             }
 
             .section {
-                height: auto;
                 padding: 15px;
             }
 
-            .carousel {
-                height: 150px; /* Ajustar el tamaño del carrusel en móvil */
-            }
-
-            .carousel-item {
-                height: 150px; /* Ajustar la altura de los items del carrusel */
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
             }
 
             .stellar-client {
@@ -188,7 +217,7 @@
             }
 
             .stellar-client .line {
-                display: none; /* Ocultar la línea en dispositivos móviles */
+                display: none;
             }
 
             .stellar-client img {
@@ -200,18 +229,6 @@
             .stellar-client .text {
                 font-size: 16px;
                 max-width: 100%;
-            }
-
-            /* Forcing desktop-like layout on mobile */
-            .header .content {
-                display: flex;
-                justify-content: space-between;
-            }
-
-            .stellar-client .text,
-            .stellar-client img {
-                display: flex;
-                justify-content: flex-start;
             }
         }
     </style>
@@ -233,13 +250,27 @@
     <!-- Novedades Section -->
     <div class="section">
         <h2>Novedades</h2>
-        <div class="carousel">
-            <div class="carousel-images" id="carousel-images">
-                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450');"></div>
-                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450/FF6347/FFFFFF');"></div>
-                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450/8A2BE2/FFFFFF');"></div>
-                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450/FF8C00/FFFFFF');"></div>
-                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450/228B22/FFFFFF');"></div>
+        <div class="grid">
+            <div class="card" style="background-image: url('https://via.placeholder.com/800x1424');">
+                <div class="overlay"></div>
+                <div class="info">
+                    <h3>New Update</h3>
+                    <p>This is a description of the new update.</p>
+                </div>
+            </div>
+            <div class="card" style="background-image: url('https://via.placeholder.com/800x1424/FF6347/FFFFFF');">
+                <div class="overlay"></div>
+                <div class="info">
+                    <h3>New Event</h3>
+                    <p>Details about the upcoming event.</p>
+                </div>
+            </div>
+            <div class="card" style="background-image: url('https://via.placeholder.com/800x1424/8A2BE2/FFFFFF');">
+                <div class="overlay"></div>
+                <div class="info">
+                    <h3>Featured Highlight</h3>
+                    <p>Highlighting a special feature of our service.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -247,13 +278,27 @@
     <!-- Videos Section -->
     <div class="section">
         <h2>Videos</h2>
-        <div class="carousel">
-            <div class="carousel-images" id="video-carousel-images">
-                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450'); cursor: pointer;" onclick="window.location.href='https://example.com/video1';"></div>
-                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450/FF6347/FFFFFF'); cursor: pointer;" onclick="window.location.href='https://example.com/video2';"></div>
-                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450/8A2BE2/FFFFFF'); cursor: pointer;" onclick="window.location.href='https://example.com/video3';"></div>
-                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450/FF8C00/FFFFFF'); cursor: pointer;" onclick="window.location.href='https://example.com/video4';"></div>
-                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450/228B22/FFFFFF'); cursor: pointer;" onclick="window.location.href='https://example.com/video5';"></div>
+        <div class="grid">
+            <div class="card" style="background-image: url('https://via.placeholder.com/800x1424');" onclick="window.location.href='https://example.com/video1';">
+                <div class="overlay"></div>
+                <div class="info">
+                    <h3>Video 1</h3>
+                    <p>Watch our first exciting video.</p>
+                </div>
+            </div>
+            <div class="card" style="background-image: url('https://via.placeholder.com/800x1424/FF6347/FFFFFF');" onclick="window.location.href='https://example.com/video2';">
+                <div class="overlay"></div>
+                <div class="info">
+                    <h3>Video 2</h3>
+                    <p>Another great video to enjoy!</p>
+                </div>
+            </div>
+            <div class="card" style="background-image: url('https://via.placeholder.com/800x1424/8A2BE2/FFFFFF');" onclick="window.location.href='https://example.com/video3';">
+                <div class="overlay"></div>
+                <div class="info">
+                    <h3>Video 3</h3>
+                    <p>Don't miss this video!</p>
+                </div>
             </div>
         </div>
     </div>
@@ -268,31 +313,6 @@
         </div>
     </div>
 
-    <script>
-        // Carrusel de Novedades
-        let currentIndex = 0;
-
-        function changeCarouselImage() {
-            const carouselImages = document.getElementById('carousel-images');
-            const totalImages = carouselImages.children.length;
-            currentIndex = (currentIndex + 1) % totalImages;
-            carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
-
-        setInterval(changeCarouselImage, 5000); // Cambia cada 5 segundos
-
-        // Carrusel de Videos
-        let currentVideoIndex = 0;
-
-        function changeVideoCarouselImage() {
-            const videoCarouselImages = document.getElementById('video-carousel-images');
-            const totalImages = videoCarouselImages.children.length;
-            currentVideoIndex = (currentVideoIndex + 1) % totalImages;
-            videoCarouselImages.style.transform = `translateX(-${currentVideoIndex * 100}%)`;
-        }
-
-        setInterval(changeVideoCarouselImage, 5000); // Cambia cada 5 segundos
-    </script>
 </body>
 
 </html>
