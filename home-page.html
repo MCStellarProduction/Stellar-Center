@@ -113,20 +113,21 @@
             box-shadow: 0 0 20px rgba(138, 43, 226, 0.8);
         }
 
-        /* Footer Section */
-        .footer {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(to bottom right, #8A2BE2, #000000);
+        /* Footer and Stellar Client merged Section */
+        .footer-stellar-client {
             display: flex;
             align-items: center;
             justify-content: flex-start;
+            width: 100%;
+            height: auto;
             padding: 20px;
+            background: linear-gradient(to bottom right, #8A2BE2, #000000);
             border-radius: 20px;
             box-sizing: border-box;
+            margin-top: 20px;
         }
 
-        .footer .line {
+        .footer-stellar-client .line {
             border-left: 2px solid white;
             height: 120px;
             margin-left: 20px;
@@ -135,41 +136,13 @@
             transform: translateX(-50%); /* Centrar la línea */
         }
 
-        .footer-text {
-            color: white;
-            font-size: 24px;
-            max-width: 500px;
-        }
-
-        .footer .btn-glow {
-            margin-top: 20px;
-        }
-
-        /* Stellar Client Section */
-        .stellar-client {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            width: 100%;
-            height: auto;
-            padding: 20px;
-            box-sizing: border-box;
-            margin-top: 20px;
-        }
-
-        .stellar-client .line {
-            border-left: 2px solid white;
-            height: 120px;
-            margin-left: 20px;
-        }
-
-        .stellar-client img {
+        .footer-stellar-client img {
             width: 200px;
             height: 112px;
             border-radius: 10px;
         }
 
-        .stellar-client .text {
+        .footer-stellar-client .text {
             color: white;
             font-size: 18px;
             margin-left: 20px;
@@ -210,47 +183,37 @@
                 height: 150px; /* Ajustar la altura de los items del carrusel */
             }
 
-            .footer {
-                height: auto;
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer .line {
-                display: none; /* Ocultar la línea en dispositivos móviles */
-            }
-
-            .footer-text {
-                font-size: 18px;
-                max-width: 100%;
-                margin-bottom: 15px;
-            }
-
-            .btn-glow {
-                font-size: 16px;
-                padding: 12px;
-            }
-
-            /* Stellar Client Section adjustments for mobile */
-            .stellar-client {
+            .footer-stellar-client {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
             }
 
-            .stellar-client .line {
-                margin: 0 0 20px 0;
+            .footer-stellar-client .line {
+                display: none; /* Ocultar la línea en dispositivos móviles */
             }
 
-            .stellar-client img {
+            .footer-stellar-client img {
                 width: 100%;
                 height: auto;
                 margin-bottom: 20px;
             }
 
-            .stellar-client .text {
+            .footer-stellar-client .text {
                 font-size: 16px;
                 max-width: 100%;
+            }
+
+            /* Forcing desktop-like layout on mobile */
+            .header .content {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .footer-stellar-client .text,
+            .footer-stellar-client img {
+                display: flex;
+                justify-content: flex-start;
             }
         }
     </style>
@@ -297,23 +260,14 @@
         </div>
     </div>
 
-    <!-- Stellar Client Section -->
-    <div class="stellar-client">
+    <!-- Footer and Stellar Client Merged Section -->
+    <div class="footer-stellar-client">
         <img src="https://via.placeholder.com/200x112" alt="Stellar Client Image" />
         <div class="line"></div>
         <div class="text">
             The Stellar Client is the client for participating in Minecraft events created by MCStellar Production. If you have an account, you can log in.
             <a href="https://example.com/login" class="btn-glow">Go Now</a>
         </div>
-    </div>
-
-    <!-- Footer Section -->
-    <div class="footer">
-        <div class="footer-text">
-            The Stellar Client is the client for participating in Minecraft events created by MCStellar Production. If you have an account, you can log in.
-            <a href="https://example.com/login" class="btn-glow">Go Now</a>
-        </div>
-        <div class="line"></div>
     </div>
 
     <script>
