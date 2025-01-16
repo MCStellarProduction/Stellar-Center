@@ -1,77 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stellar Center - Home</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        /* Header Section */
+        .header {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(to bottom right, #FF8C00, #8A2BE2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .header .content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .header .line {
+            border-left: 2px solid white;
+            height: 120px;
+            margin-left: 20px;
+        }
+
+        .header img {
+            width: 320px;
+            height: 180px;
+            border-radius: 10px;
+        }
+
+        .header-text {
+            color: white;
+            font-size: 24px;
+            max-width: 500px;
+        }
+
+        /* Novedades and Videos sections */
+        .section {
+            width: 100%;
+            height: 200px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* Carousel */
+        .carousel {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 1s ease-in-out;
+        }
+
+        .carousel-item {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+        }
+
+        /* Button with glow effect */
+        .btn-glow {
+            background-color: #8A2BE2;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.8);
+        }
+
+        /* Footer Section */
+        .footer {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(to bottom right, #8A2BE2, #000000);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+        .footer .line {
+            border-left: 2px solid white;
+            height: 120px;
+            margin-left: 20px;
+        }
+
+        .footer-text {
+            color: white;
+            font-size: 24px;
+            max-width: 500px;
+        }
+
+        .footer .btn-glow {
+            margin-top: 20px;
+        }
+    </style>
 </head>
-  <style>
-    body {
-      background: #fff2e2;
-      font-family: 'Poppins', sans-serif;
-      overflow-x: hidden;
-      text-align: center;
-    }
 
-    .main_img {
-      height: 200px;
-      width: 500px;
-    }
+<body>
 
-    .main_container {
-      width: 100vw;
-      height: 400px;
-      background-color: #fff8e0;
-      border-radius: 12px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .main_container h1 {
-      text-align: center;
-      margin: 5px;
-      font-weight: 20px;
-      font-size: 10px;
-      z-index: 500;
-    }
-
-    .main_container p {
-      text-align: center;
-      margin-top: 2px;
-      font-weight: 5px;
-      font-size: 6px;
-      z-index: 499;
-    }
-  </style>
-  <body>
-    <img class="main_img" scr="img/stellar_center.png">
-    <div class="main_container">
-      <h1>NEW'S</h1>
-      <p>This is the MCStellar Production News Feed</p>
-      <div class="new-block">
-        <img src="news-img/000.jpg">
-        <h2>TITLE</h2>
-        <p>Desc Text</p>
-      </div>
+    <!-- Header Section (Welcome) -->
+    <div class="header">
+        <div class="content">
+            <img src="https://via.placeholder.com/320x180" alt="Image" />
+            <div class="line"></div>
+            <div class="header-text">
+                Welcome to Stellar Center. This is the official page of MCStellar Production, and here you'll find everything about us.
+            </div>
+        </div>
     </div>
-    <br>
-    <div class="video_container">
-      <h1>Last Video</h1>
-      <p>Here you find the last video of the MCStellar Production</p>
-      <div class="last-video-container">
-        <img src="thumbnails/000.jpg">
-        <h2>TITLE</h2>
-        <p>Desc Text</p>
-      </div>
+
+    <!-- Novedades Section -->
+    <div class="section">
+        <h2>Novedades</h2>
+        <div class="carousel">
+            <div class="carousel-images" id="carousel-images">
+                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450');"></div>
+                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450/FF6347/FFFFFF');"></div>
+                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450/8A2BE2/FFFFFF');"></div>
+                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450/FF8C00/FFFFFF');"></div>
+                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450/228B22/FFFFFF');"></div>
+            </div>
+        </div>
     </div>
-    <br>
-    <div class="stellar_client">
-      <img src="stellar-client/000.jpg">
-      <button class="btn_stellar_client" onclick="window.location.href='example.com';">Ir a Stellar Client</button>
-      <p>Here you can find the stellar client, where you can log in to your client account to enter MCStellar Production Minecraft events.</p>
+
+    <!-- Videos Section -->
+    <div class="section">
+        <h2>Videos</h2>
+        <div class="carousel">
+            <div class="carousel-images" id="video-carousel-images">
+                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450'); cursor: pointer;" onclick="window.location.href='https://example.com/video1';"></div>
+                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450/FF6347/FFFFFF'); cursor: pointer;" onclick="window.location.href='https://example.com/video2';"></div>
+                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450/8A2BE2/FFFFFF'); cursor: pointer;" onclick="window.location.href='https://example.com/video3';"></div>
+                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450/FF8C00/FFFFFF'); cursor: pointer;" onclick="window.location.href='https://example.com/video4';"></div>
+                <div class="carousel-item" style="background-image: url('https://via.placeholder.com/800x450/228B22/FFFFFF'); cursor: pointer;" onclick="window.location.href='https://example.com/video5';"></div>
+            </div>
+        </div>
     </div>
-  </body>
+
+    <!-- Footer Section (Stellar Client) -->
+    <div class="footer">
+        <div class="footer-text">
+            The Stellar Client is the client for participating in Minecraft events created by MCStellar Production. If you have an account, you can log in.
+            <a href="https://example.com/login" class="btn-glow">Go Now</a>
+        </div>
+        <div class="line"></div>
+    </div>
+
+    <script>
+        // Carousel for "Novedades" and "Videos"
+        let currentIndex = 0;
+
+        function changeCarouselImage() {
+            const carouselImages = document.getElementById('carousel-images');
+            const totalImages = carouselImages.children.length;
+            currentIndex = (currentIndex + 1) % totalImages;
+            carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        setInterval(changeCarouselImage, 5000); // Change every 5 seconds
+
+        let currentVideoIndex = 0;
+
+        function changeVideoCarouselImage() {
+            const videoCarouselImages = document.getElementById('video-carousel-images');
+            const totalImages = videoCarouselImages.children.length;
+            currentVideoIndex = (currentVideoIndex + 1) % totalImages;
+            videoCarouselImages.style.transform = `translateX(-${currentVideoIndex * 100}%)`;
+        }
+
+        setInterval(changeVideoCarouselImage, 5000); // Change every 5 seconds
+    </script>
+</body>
+
 </html>
