@@ -75,17 +75,19 @@
             gap: 20px;
         }
 
-        /* Card style */
+        /* Card style (16:9 ratio with only width and height) */
         .card {
             position: relative;
             width: 100%;
-            padding-top: 177.77%; /* 9:16 Aspect Ratio */
+            height: 0;
             background-size: cover;
             background-position: center;
             border-radius: 10px;
             overflow: hidden;
             cursor: pointer;
             transition: all 0.3s ease;
+            /* 16:9 aspect ratio, with 100% width */
+            aspect-ratio: 16 / 9;
         }
 
         .card .overlay {
