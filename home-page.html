@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stellar Center - Home</title>
+    <!-- Importando la fuente Poppins desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         /* General styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f5f5f5;
@@ -93,13 +95,16 @@
         .btn-glow {
             background-color: #8A2BE2;
             color: white;
-            padding: 15px 30px;
+            padding: 15px;
             font-size: 18px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
             transition: box-shadow 0.3s ease;
             text-decoration: none;
+            display: block;
+            width: 100%; /* Hacemos que el botón ocupe todo el ancho */
+            text-align: center;
         }
 
         .btn-glow:hover {
@@ -122,6 +127,9 @@
             border-left: 2px solid white;
             height: 120px;
             margin-left: 20px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%); /* Centrar la línea */
         }
 
         .footer-text {
@@ -187,7 +195,7 @@
     </div>
 
     <script>
-        // Carousel for "Novedades" and "Videos"
+        // Carrusel de Novedades
         let currentIndex = 0;
 
         function changeCarouselImage() {
@@ -197,8 +205,9 @@
             carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
 
-        setInterval(changeCarouselImage, 5000); // Change every 5 seconds
+        setInterval(changeCarouselImage, 5000); // Cambia cada 5 segundos
 
+        // Carrusel de Videos
         let currentVideoIndex = 0;
 
         function changeVideoCarouselImage() {
@@ -208,7 +217,7 @@
             videoCarouselImages.style.transform = `translateX(-${currentVideoIndex * 100}%)`;
         }
 
-        setInterval(changeVideoCarouselImage, 5000); // Change every 5 seconds
+        setInterval(changeVideoCarouselImage, 5000); // Cambia cada 5 segundos
     </script>
 </body>
 
