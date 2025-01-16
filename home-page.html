@@ -98,15 +98,14 @@
         .btn-glow {
             background-color: #8A2BE2;
             color: white;
-            padding: 15px;
+            padding: 12px 25px; /* Reducción del tamaño del botón */
             font-size: 18px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
             transition: box-shadow 0.3s ease;
             text-decoration: none;
-            display: block;
-            width: 100%; /* Hacemos que el botón ocupe todo el ancho */
+            display: inline-block; /* Botón de tamaño adecuado */
             text-align: center;
         }
 
@@ -121,7 +120,7 @@
             background: linear-gradient(to bottom right, #8A2BE2, #000000);
             display: flex;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: flex-start;
             padding: 20px;
             border-radius: 20px;
             box-sizing: border-box;
@@ -144,6 +143,36 @@
 
         .footer .btn-glow {
             margin-top: 20px;
+        }
+
+        /* Stellar Client Section */
+        .stellar-client {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            height: auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .stellar-client .line {
+            border-left: 2px solid white;
+            height: 120px;
+            margin-left: 20px;
+        }
+
+        .stellar-client img {
+            width: 200px;
+            height: 112px;
+            border-radius: 10px;
+        }
+
+        .stellar-client .text {
+            color: white;
+            font-size: 18px;
+            margin-left: 20px;
+            max-width: 400px;
         }
 
         /* Mobile adjustments */
@@ -200,6 +229,28 @@
                 font-size: 16px;
                 padding: 12px;
             }
+
+            /* Stellar Client Section adjustments for mobile */
+            .stellar-client {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .stellar-client .line {
+                margin: 0 0 20px 0;
+            }
+
+            .stellar-client img {
+                width: 100%;
+                height: auto;
+                margin-bottom: 20px;
+            }
+
+            .stellar-client .text {
+                font-size: 16px;
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -214,6 +265,16 @@
             <div class="header-text">
                 Welcome to Stellar Center. This is the official page of MCStellar Production, and here you'll find everything about us.
             </div>
+        </div>
+    </div>
+
+    <!-- Stellar Client Section -->
+    <div class="stellar-client">
+        <img src="https://via.placeholder.com/200x112" alt="Stellar Client Image" />
+        <div class="line"></div>
+        <div class="text">
+            The Stellar Client is the client for participating in Minecraft events created by MCStellar Production. If you have an account, you can log in.
+            <a href="https://example.com/login" class="btn-glow">Go Now</a>
         </div>
     </div>
 
