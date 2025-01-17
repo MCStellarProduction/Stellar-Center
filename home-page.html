@@ -325,5 +325,17 @@
     </div>
 
 </body>
+<script>
+    function redirigirSiCelular() {
+  // Detectar si el dispositivo es móvil
+  const esCelular = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  if (esCelular) {
+    // Redirigir a una página personalizada si es un celular
+    window.location.href = "https://tupagina.com/celular";
+  }
+}
+
+</script>
 
 </html>
