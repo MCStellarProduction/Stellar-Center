@@ -1,1 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Stellar Center - Home</title>
+    <!-- Importando la fuente Poppins desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            overflow-x: hidden;
+            user-select: none; /* Deshabilitar selección de texto */
+        }
+
+        /* Header Section */
+        .header {
+            width: 100%;
+            background: linear-gradient(to bottom right, #FF8C00, #8A2BE2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            box-sizing: border-box;
+            flex-direction: column;
+        }
+
+        .header img {
+            width: 100%;
+            height: auto;
+            max-width: 320px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .header-text {
+            color: white;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        /* Novedades and Videos sections */
+        .section {
+            width: 100%;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        /* Card style */
+        .card {
+            position: relative;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .card::before {
+            content: "";
+            display: block;
+            padding-top: 177.77%; /* 9:16 Aspect Ratio */
+        }
+
+        .card .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover .overlay {
+            opacity: 1;
+        }
+
+        .card .info {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .info {
+            opacity: 1;
+        }
+
+        .card .info h3 {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .card .info p {
+            font-size: 14px;
+        }
+
+        /* Button with glow effect */
+        .btn-glow {
+            background-color: #8A2BE2;
+            color: white;
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.8);
+        }
+
+        /* Stellar Client Section */
+        .stellar-client {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to bottom right, #8A2BE2, #000000);
+            border-radius: 20px;
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
+
+        .stellar-client img {
+            width: 100%;
+            height: auto;
+            max-width: 250px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .stellar-client .text {
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px;
+            }
+
+            .header-text {
+                font-size: 16px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .stellar-client {
+                padding: 15px;
+            }
+
+            .stellar-client .text {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section (Welcome) -->
+    <div class="header">
+        <img src="mcstellar_production_logo_title.png" alt="Image" />
+        <div class="header-text">
+            Welcome to Stellar Center. This is the official page of MCStellar Production, and here you'll find everything about us.
+        </div>
+    </div>
+
+    <!-- Novedades Section -->
+    <div class="section">
+        <h2>Novedades</h2>
+        <div class="grid">
+            <div class="card" style="background-image: url('img/example.jpg');">
+                <div class="overlay"></div>
+                <div class="info">
+                    <h3>New Update</h3>
+                    <p>This is a description of the new update.</p>
+                </div>
+            </div>
+            <div class="card" style="background-image: url('img/example.jpg');">
+                <div class="overlay"></div>
+                <div class="info">
+                    <h3>New Event</h3>
+                    <p>Details about the upcoming event.</p>
+                </div>
+            </div>
+            <div class="card" style="background-image: url('img/example.jpg');">
+                <div class="overlay"></div>
+                <div class="info">
+                    <h3>Featured Highlight</h3>
+                    <p>Highlighting a special feature of our service.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Videos Section -->
+    <div class="section">
+        <h2>Videos</h2>
+        <div class="grid">
+            <div class="card" style="background-image: url('img/example.jpg');" onclick="window.location.href='https://example.com/video1';">
+                <div class="overlay"></div>
+                <div class="info">
+                    <h3>Video 1</h3>
+                    <p>Watch our first exciting video.</p>
+                </div>
+            </div>
+            <div class="card" style="background-image: url('img/example.jpg');" onclick="window.location.href='https://example.com/video2';">
+                <div class="overlay"></div>
+                <div class="info">
+                    <h3>Video 2</h3>
+                    <p>Another great video to enjoy!</p>
+                </div>
+            </div>
+            <div class="card" style="background-image: url('img/example.jpg');" onclick="window.location.href='https://example.com/video3';">
+                <div class="overlay"></div>
+                <div class="info">
+                    <h3>Video 3</h3>
+                    <p>Don't miss this video!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stellar Client Section -->
+    <div class="stellar-client">
+        <img src="stellar_client_logo_title.png" alt="Stellar Client Image" />
+        <div class="text">
+            The Stellar Client is the client for participating in Minecraft events created by MCStellar Production. If you have an account, you can log in.
+            <a href="https://example.com/login" class="btn-glow">Go Now</a>
+        </div>
+    </div>
+
+</body>
+
+</html>
 
