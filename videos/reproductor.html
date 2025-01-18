@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video1 MCStellar</title>
+  <title>Reproductor Estilo Prime Video</title>
   <style>
     /* Estilos generales */
     body {
@@ -14,17 +14,21 @@
       align-items: center;
       height: 100vh;
       background-color: #141414;
+      color: white;
     }
 
     .video-container {
       position: relative;
       width: 80%;
       max-width: 1200px;
+      background-color: #000;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
     }
 
     .video {
       width: 100%;
-      border-radius: 8px;
+      border-radius: 10px;
       background-color: black;
     }
 
@@ -48,7 +52,7 @@
     .progress-bar {
       width: 100%;
       height: 6px;
-      background-color: #fff;
+      background-color: #aaa;
       cursor: pointer;
       border-radius: 3px;
     }
@@ -59,47 +63,90 @@
       color: white;
       font-size: 18px;
       cursor: pointer;
-      margin: 0 10px;
-      transition: opacity 0.2s;
+      margin: 0 15px;
+      padding: 5px;
+      transition: opacity 0.3s;
     }
 
     .control-buttons button:hover {
       opacity: 0.7;
     }
 
-    .volume {
-      width: 100px;
-    }
-
+    /* Volumen */
     .volume-container {
       display: flex;
       justify-content: center;
     }
 
+    .volume {
+      width: 100px;
+      margin-right: 20px;
+    }
+
+    /* Modo pantalla completa */
     button:focus {
       outline: none;
     }
 
+    /* Estilos para los botones */
+    .play-pause-btn {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px;
+      border-radius: 50%;
+      transition: background-color 0.3s;
+    }
+
+    .play-pause-btn:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Selector de idiomas */
+    .language-selector {
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
   <div class="video-container">
-    <video id="video" class="video" preload="metadata">
+    <video id="video" class="video" preload="metadata" poster="https://via.placeholder.com/1200x675">
+      <!-- Fuentes de video -->
       <source src="video.mp4" type="video/mp4">
       Tu navegador no soporta la etiqueta de video.
+
+      <!-- Subtítulos -->
+      <track id="subtitulos_es" kind="subtitles" label="Español" srclang="es" src="subtitulos_es.vtt">
+      <track id="subtitulos_en" kind="subtitles" label="Inglés" srclang="en" src="subtitulos_en.vtt">
     </video>
 
     <!-- Controles -->
     <div class="controls">
-      <div class="progress-bar-container">
-        <input type="range" id="progress-bar" class="progress-bar" value="0" max="100" step="0.1">
+      <div class="control-buttons">
+        <button id="playPauseBtn" class="play-pause-btn">Play</button>
+        <button id="muteBtn">Mute</button>
+        <button id="fullscreenBtn">Fullscreen</button>
+
+        <!-- Selector de idioma de audio -->
+        <select id="audioSelector" class="language-selector">
+          <option value="audio_en.mp4">Inglés</option>
+          <option value="audio_es.mp4">Español</option>
+        </select>
+
+        <!-- Selector de idioma de subtítulos -->
+        <select id="subtitleSelector" class="language-selector">
+          <option value="subtitulos_off">Off</option>
+          <option value="subtitulos_es.vtt">Español</option>
+          <option value="subtitulos_en.vtt">Inglés</option>
+        </select>
       </div>
 
-      <div class="control-buttons">
-        <button id="playPauseBtn" class="btn">Play</button>
-        <button id="muteBtn" class="btn">Mute</button>
-        <button id="fullscreenBtn" class="btn">Fullscreen</button>
+      <div class="progress-bar-container">
+        <input type="range" id="progress-bar" class="progress-bar" value="0" max="100" step="0.1">
       </div>
 
       <div class="volume-container">
@@ -116,24 +163,53 @@
     const volumeControl = document.getElementById('volume');
     const fullscreenBtn = document.getElementById('fullscreenBtn');
 
+    // Selector de idioma de audio
+    const audioSelector = document.getElementById('audioSelector');
+    // Selector de subtítulos
+    const subtitleSelector = document.getElementById('subtitleSelector');
+
+    let isPlaying = false;
+    let isMuted = false;
+
+    // Configuración predeterminada (Subtítulos: Off, Audio: Inglés)
+    document.addEventListener('DOMContentLoaded', function() {
+      // Establecer audio en inglés por defecto
+      audioSelector.value = "audio_en.mp4";
+      // Establecer subtítulos en Off por defecto
+      subtitleSelector.value = "subtitulos_off";
+      
+      // Desactivar todos los subtítulos al cargar la página
+      const tracks = video.getElementsByTagName('track');
+      for (let track of tracks) {
+        track.mode = 'disabled';
+      }
+    });
+
     // Reproducir/Pausar
     playPauseBtn.addEventListener('click', () => {
-      if (video.paused) {
-        video.play();
-        playPauseBtn.textContent = 'Pause';
-      } else {
+      if (isPlaying) {
         video.pause();
         playPauseBtn.textContent = 'Play';
+      } else {
+        video.play();
+        playPauseBtn.textContent = 'Pause';
       }
+      isPlaying = !isPlaying;
     });
 
     // Silenciar
     muteBtn.addEventListener('click', () => {
-      video.muted = !video.muted;
-      muteBtn.textContent = video.muted ? 'Unmute' : 'Mute';
+      if (isMuted) {
+        video.muted = false;
+        muteBtn.textContent = 'Mute';
+      } else {
+        video.muted = true;
+        muteBtn.textContent = 'Unmute';
+      }
+      isMuted = !isMuted;
     });
 
-    // Control de la barra de progreso
+    // Barra de progreso
     video.addEventListener('timeupdate', () => {
       const progress = (video.currentTime / video.duration) * 100;
       progressBar.value = progress;
@@ -157,6 +233,35 @@
         video.mozRequestFullScreen();
       } else if (video.webkitRequestFullscreen) { // Chrome, Safari
         video.webkitRequestFullscreen();
+      }
+    });
+
+    // Cambio de idioma de audio
+    audioSelector.addEventListener('change', (event) => {
+      const selectedAudio = event.target.value;
+      const newSource = document.createElement('source');
+      newSource.src = selectedAudio;
+      newSource.type = 'audio/mp4';
+
+      video.innerHTML = '';  // Limpiar el contenido actual de video
+      video.appendChild(newSource); // Añadir la nueva pista de audio
+      video.load();
+      video.play();
+    });
+
+    // Cambio de subtítulos
+    subtitleSelector.addEventListener('change', (event) => {
+      const selectedSubtitles = event.target.value;
+      const tracks = video.getElementsByTagName('track');
+      for (let track of tracks) {
+        track.mode = 'disabled';  // Desactivar todos los subtítulos
+      }
+
+      if (selectedSubtitles !== "subtitulos_off") {
+        const selectedTrack = Array.from(tracks).find(track => track.src.endsWith(selectedSubtitles));
+        if (selectedTrack) {
+          selectedTrack.mode = 'showing';  // Activar el subtítulo seleccionado
+        }
       }
     });
   </script>
