@@ -1,92 +1,115 @@
-// Definir el menú y las opciones que tendrá
-const menuItems = [
-    { name: "Nuevo Juego", action: () => alert("Nuevo Juego Iniciado") },
-    { name: "Cargar Juego", action: () => alert("Cargando Juego...") },
-    { name: "Opciones", action: () => alert("Abrir opciones...") },
-    { name: "Salir", action: () => window.close() }
-];
+// Crear el estilo de la página y los elementos del menú con JavaScript
+document.addEventListener('DOMContentLoaded', () => {
+    // Estilo básico de la página
+    document.body.style.margin = 0;
+    document.body.style.padding = 0;
+    document.body.style.fontFamily = 'Arial, sans-serif';
+    document.body.style.backgroundColor = '#1e1e1e';
+    document.body.style.color = '#fff';
+    document.body.style.display = 'flex';
+    document.body.style.justifyContent = 'center';
+    document.body.style.alignItems = 'center';
+    document.body.style.height = '100vh';
 
-// Crear el contenedor del menú
-const createMenu = () => {
-    const menuContainer = document.createElement('div');
-    menuContainer.id = 'minecraft-menu';
-    menuContainer.style.position = 'absolute';
-    menuContainer.style.top = '50px';
-    menuContainer.style.left = '50px';
-    menuContainer.style.backgroundColor = '#333';
-    menuContainer.style.padding = '10px';
-    menuContainer.style.borderRadius = '10px';
-    menuContainer.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
-    menuContainer.style.display = 'none'; // El menú estará oculto inicialmente
+    // Crear el botón de menú
+    const menuButton = document.createElement('button');
+    menuButton.innerText = 'Abrir Menú';
+    menuButton.style.padding = '15px 30px';
+    menuButton.style.backgroundColor = '#4CAF50';
+    menuButton.style.color = '#fff';
+    menuButton.style.border = 'none';
+    menuButton.style.borderRadius = '5px';
+    menuButton.style.fontSize = '16px';
+    menuButton.style.cursor = 'pointer';
+    menuButton.style.transition = 'background-color 0.3s ease';
 
-    // Crear el título del menú
+    menuButton.addEventListener('mouseover', () => {
+        menuButton.style.backgroundColor = '#45a049';
+    });
+
+    menuButton.addEventListener('mouseout', () => {
+        menuButton.style.backgroundColor = '#4CAF50';
+    });
+
+    // Crear el menú
+    const menu = document.createElement('div');
+    menu.style.position = 'absolute';
+    menu.style.top = '70px';
+    menu.style.left = '50%';
+    menu.style.transform = 'translateX(-50%)';
+    menu.style.backgroundColor = '#333';
+    menu.style.padding = '20px';
+    menu.style.borderRadius = '10px';
+    menu.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+    menu.style.display = 'none'; // Inicialmente oculto
+    menu.style.width = '250px';
+    menu.style.textAlign = 'center';
+
     const title = document.createElement('h2');
     title.innerText = 'Menú Principal';
-    title.style.color = '#FFF';
-    title.style.textAlign = 'center';
-    menuContainer.appendChild(title);
+    title.style.margin = '0 0 20px 0';
+    menu.appendChild(title);
 
     // Crear las opciones del menú
-    const list = document.createElement('ul');
-    list.style.listStyle = 'none';
-    list.style.padding = '0';
+    const menuItems = [
+        { label: 'Nuevo Juego', action: newGame },
+        { label: 'Cargar Juego', action: loadGame },
+        { label: 'Opciones', action: openOptions },
+        { label: 'Salir', action: exitGame }
+    ];
 
     menuItems.forEach(item => {
-        const listItem = document.createElement('li');
-        listItem.style.margin = '10px 0';
-        
         const button = document.createElement('button');
-        button.innerText = item.name;
-        button.style.padding = '10px';
+        button.innerText = item.label;
         button.style.backgroundColor = '#444';
-        button.style.color = '#FFF';
+        button.style.color = '#fff';
         button.style.border = 'none';
+        button.style.padding = '10px';
+        button.style.width = '100%';
         button.style.borderRadius = '5px';
         button.style.cursor = 'pointer';
-        
-        // Acción de cada botón
+        button.style.marginBottom = '10px';
+        button.style.fontSize = '18px';
+        button.style.transition = 'background-color 0.3s ease';
+
+        button.addEventListener('mouseover', () => {
+            button.style.backgroundColor = '#666';
+        });
+
+        button.addEventListener('mouseout', () => {
+            button.style.backgroundColor = '#444';
+        });
+
         button.addEventListener('click', item.action);
-        
-        listItem.appendChild(button);
-        list.appendChild(listItem);
+        menu.appendChild(button);
     });
 
-    menuContainer.appendChild(list);
-    document.body.appendChild(menuContainer);
-    
-    return menuContainer;
-};
+    // Funciones para cada acción del menú
+    function newGame() {
+        alert('Nuevo Juego Iniciado!');
+    }
 
-// Función para mostrar/ocultar el menú
-const toggleMenu = (menu) => {
-    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-};
+    function loadGame() {
+        alert('Cargando Juego...');
+    }
 
-// Crear el botón para abrir el menú
-const createMenuButton = () => {
-    const button = document.createElement('button');
-    button.innerText = 'Abrir Menú';
-    button.style.position = 'absolute';
-    button.style.top = '20px';
-    button.style.left = '20px';
-    button.style.padding = '10px';
-    button.style.backgroundColor = '#444';
-    button.style.color = '#FFF';
-    button.style.border = 'none';
-    button.style.borderRadius = '5px';
-    button.style.cursor = 'pointer';
+    function openOptions() {
+        alert('Abriendo opciones...');
+    }
 
-    button.addEventListener('click', () => {
-        toggleMenu(menu);
-    });
+    function exitGame() {
+        window.close(); // Intenta cerrar la ventana (aunque no funciona en todos los navegadores)
+    }
 
-    document.body.appendChild(button);
-};
+    // Función para alternar la visibilidad del menú
+    function toggleMenu() {
+        menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+    }
 
-// Inicializar el menú
-const initMinecraftMenu = () => {
-    const menu = createMenu();
-    createMenuButton();
-};
+    // Agregar el botón de menú y el menú al DOM
+    document.body.appendChild(menuButton);
+    document.body.appendChild(menu);
 
-window.onload = initMinecraftMenu;
+    // Agregar el evento de clic al botón para abrir/cerrar el menú
+    menuButton.addEventListener('click', toggleMenu);
+});
