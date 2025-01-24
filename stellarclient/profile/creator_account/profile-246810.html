@@ -60,6 +60,26 @@
       transition: all 0.3s ease;
     }
 
+    .boton {
+      width: 250px;
+      height: 120px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #fff; 
+      color: black;
+      border: none;
+      border-radius: 8px; 
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .boton:hover {
+      background-color: #bbb; 
+    }
+
+
     /* Barra de navegación */
     .navbar {
       background: linear-gradient(to bottom right, #130d19, #342649);
@@ -213,7 +233,7 @@
       flex-direction: column;
       gap: 1.5rem;
       margin-top: 1.5rem;
-      background-color: #000;
+      background: url('instance-img.jpg') no-repeat center center / cover;
       border-radius: 1rem;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       padding: 15px;
@@ -336,17 +356,6 @@
       <div class="no-event" id="no-noticia">Noticias Disponibles</div>
       <div id="noticia-container"></div>
     </div>
-
-    <div class="noticia-box">
-      <span class="material-symbols-outlined">mail</span> <h2>Buzon</h2>
-      <div class="no-event">Mensajes de otros compañeros:</div>
-      <div id="noticia-container"></div>
-    <div class="dot"></div>
-            <div class="event-details">
-              <span class="material-symbols-outlined">person</span> <h4>System</h4>
-              <p>Nadie te a dejado un mensaje...</p>
-            </div>
-    </div>
   </div>
 </div>
 
@@ -459,7 +468,7 @@
             <div class="noticia-details">
               <h4>${noticia.title}</h4>
               <p>${noticia.description}</p>
-              <p class="time">${noticia.time}</p>
+              <button class="instance-btn" onclick="window.location.href='https://www.ejemplo.com'">Open Instance</button>
             </div>
           `;
           noticiaContainer.appendChild(noticiaCard);
