@@ -1,1 +1,19 @@
-
+{
+  "events": [
+    {
+      "name": "Primer Dia de Clases",
+      "description": "Aqui se vera las secciones de cada persona.",
+      "time": "12:00 PM",
+      "startTime": "2025-01-20T11:50:35",  
+      "endTime": "2025-01-20T14:50:35",  
+      "isLive": true                      
+    }
+  ],
+  "news": [
+    {
+      "title": "Intance Test",
+      "description": "Test Instance for a Beta WebSite",
+      "time": "Not Available"
+    }
+  ]
+}
