@@ -174,6 +174,11 @@
       color: white;
     }
 
+    .content-section p {
+      font-size: 0.8rem;
+      color: white;
+    }
+
     .content-section h3 {
       font-size: 1rem;
       color: white;
@@ -355,28 +360,21 @@
 
   <div id="menu" class="content-section">
     <h1>Menú</h1>
-    <div class="event-box">
-      <span class="material-symbols-outlined">event_upcoming</span> <h2>Eventos</h2>
-      <div class="no-event" id="no-event">Eventos Disponibles</div>
-      <div id="events-container"></div>
-    </div>
-
     <div class="noticia-box">
-      <span class="material-symbols-outlined">receipt_long</span> <h2>Noticias</h2>
-      <div class="no-event" id="no-noticia">Noticias Disponibles</div>
+      <span class="material-symbols-outlined">event_upcoming</span> <h2>Instance</h2>
       <div id="noticia-container"></div>
     </div>
   </div>
 </div>
 
   <div id="informacion" class="content-section">
-    <h1 class="section-title">Información de Cuenta</h1>
+    <h1 class="section-title">Account Info</h1>
     <br>
-    <span class="material-symbols-outlined">deployed_code_account</span> <h3>Cuenta Creada</h3>
+    <span class="material-symbols-outlined">deployed_code_account</span> <h3>Create Account</h3>
     <p>??</p>
-    <span class="material-symbols-outlined">hotel_class</span> <h3>Tipo de Cuenta</h3>
+    <span class="material-symbols-outlined">hotel_class</span> <h3>Account Type</h3>
     <p>??</p>
-    <span class="material-symbols-outlined">school</span> <h3>Tipo de Acceso</h3>
+    <span class="material-symbols-outlined">school</span> <h3>Access Type</h3>
     <p>??</p>
   </div>
 
@@ -424,27 +422,6 @@
         });
     }
 
-    function loadEvents(events) {
-      const eventsContainer = document.getElementById('events-container');
-      if (events.length > 0) {
-        events.forEach(event => {
-          const eventCard = document.createElement('div');
-          eventCard.classList.add('event-card');
-          eventCard.innerHTML = `
-            <div class="dot"></div>
-            <div class="event-details">
-              <h4>${event.name}</h4>
-              <p>${event.description}</p>
-              <p class="time">${event.time}</p>
-            </div>
-          `;
-          eventsContainer.appendChild(eventCard);
-        });
-      } else {
-        document.getElementById('no-event').style.display = 'block';
-      }
-    }
-
     function loadData() {
   // Agregar un timestamp a la URL para evitar caché
   const url = 'https://mcstellarproduction.github.io/8-3_web/uidd/token-102/server-176/data.json';
@@ -454,7 +431,6 @@
   fetch(urlWithTimestamp)
     .then(response => response.json())
     .then(data => {
-      loadEvents(data.events);
       loadNoticias(data.news);
     })
     .catch(error => {
