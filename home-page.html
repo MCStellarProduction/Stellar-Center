@@ -326,15 +326,13 @@
 
 </body>
 <script>
-    function redirigirSiCelular() {
-  // Detectar si el dispositivo es móvil
-  const esCelular = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-  if (esCelular) {
-    // Redirigir a una página personalizada si es un celular
-    window.location.href = "https://mcstellar.lat/mobile/home-page";
+    function redirigirSiEsCelular() {
+  if (window.innerWidth <= 800 && /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent)) {
+    window.location.href = "https://www.tupagina.com";
   }
 }
+
+window.onload = redirigirSiEsCelular;
 
 </script>
 
