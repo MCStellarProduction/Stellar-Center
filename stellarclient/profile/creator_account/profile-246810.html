@@ -411,7 +411,7 @@
 
     function loadData() {
       // Aquí debes poner la URL correcta del archivo JSON en tu repositorio de GitHub Pages
-      fetch('https://mcstellarproduction.github.io/8-3_web/uidd/token-102/server-176/data.json')
+      fetch('https://www.mcstellar.lat/stellarclient/storage_instance/data-creator.json')
         .then(response => response.json())
         .then(data => {
           loadEvents(data.events);
@@ -424,7 +424,7 @@
 
     function loadData() {
   // Agregar un timestamp a la URL para evitar caché
-  const url = 'https://mcstellarproduction.github.io/8-3_web/uidd/token-102/server-176/data.json';
+  const url = 'https://www.mcstellar.lat/stellarclient/storage_instance/data-creator.json';
   const timestamp = new Date().getTime(); // Obtenemos el tiempo actual en milisegundos
   const urlWithTimestamp = `${url}?t=${timestamp}`; // Añadimos el timestamp a la URL
 
