@@ -16,10 +16,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: url('redsurvival.jpg'); /* Reemplaza con la URL de tu imagen */
+            background-image: url('your-image.jpg'); /* Reemplaza con la URL de tu imagen */
             background-size: cover;
             background-position: center;
             font-family: Arial, sans-serif;
+            overflow: hidden;
         }
 
         .content {
@@ -31,10 +32,10 @@
         }
 
         .bottom-box {
-            position: absolute;
-            bottom: 50%;
+            position: fixed;
+            bottom: 0;
             left: 50%;
-            transform: translate(-50%, 50%);
+            transform: translateX(-50%);
             width: 800px;
             height: 200px;
             backdrop-filter: blur(10px);
@@ -108,8 +109,8 @@
         const bottomBox = document.getElementById('bottomBox');
 
         startButton.addEventListener('click', () => {
-            // Hacer desaparecer el botón al ser clickeado
-            startButton.style.display = 'none';
+            // Hacer desaparecer el cuadro entero (incluido el botón)
+            bottomBox.style.opacity = '0';
 
             const randomTime = Math.floor(Math.random() * (71)) + 14; // Aleatorio entre 14 y 84 segundos
             const totalTime = randomTime * 1000; // Convertir a milisegundos
@@ -139,10 +140,6 @@
 
             // Animación más suave para la barra
             progressBar.style.transition = 'width 1s ease-in-out';
-            bottomBox.style.transition = 'opacity 0.5s ease';
-            bottomBox.style.opacity = '0'; // Desaparecer el cuadro con el botón
-
-            // Mostrar la barra de carga y tiempo en pantalla
         });
     </script>
 </body>
