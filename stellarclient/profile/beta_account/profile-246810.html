@@ -465,6 +465,14 @@
         document.getElementById('no-noticia').style.display = 'block';
       }
     }
+
+    function redirigirSiEsCelular() {
+  if (window.innerWidth <= 800 && /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent)) {
+    window.location.href = "https://www.mcstellar.lat/mobile/home-page";
+  }
+}
+
+window.onload = redirigirSiEsCelular;
   </script>
 
 </body>
