@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedSurvival</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('your-image.jpg'); /* Reemplaza con la URL de tu imagen */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .content {
+            text-align: center;
+        }
+
+        .bottom-box {
+            position: fixed;
+            bottom: 0;
+            width: 800px;
+            height: 200px;
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .button {
+            padding: 10px 30px;
+            background-color: white;
+            color: #333;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 20px;
+            height: 20px;
+            margin-top: 30px;
+            display: none;
+        }
+
+        .progress-bar {
+            width: 0;
+            height: 100%;
+            background-color: white;
+            border-radius: 20px;
+            transition: width 1s ease-in-out;
+        }
+
+        .time-info {
+            margin-top: 10px;
+            color: white;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="bottom-box">
+            <div>
+                <button class="button" id="startButton">Iniciar Carga</button>
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="time-info" id="timeInfo"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const startButton = document.getElementById('startButton');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressBar = document.getElementById('progressBar');
+        const timeInfo = document.getElementById('timeInfo');
+
+        startButton.addEventListener('click', () => {
+            const randomTime = Math.floor(Math.random() * (71)) + 14; // Aleatorio entre 14 y 84 segundos
+            const totalTime = randomTime * 1000; // Convertir a milisegundos
+            let elapsedTime = 0;
+
+            // Mostrar barra de carga
+            progressContainer.style.display = 'block';
+            progressBar.style.width = '0%';
+
+            // Función para actualizar la barra de progreso
+            const interval = setInterval(() => {
+                elapsedTime += 100; // Incrementar tiempo en 100ms
+                const progress = (elapsedTime / totalTime) * 100; // Calcular progreso en porcentaje
+                progressBar.style.width = progress + '%';
+                const elapsedSeconds = Math.floor(elapsedTime / 1000);
+                const remainingSeconds = Math.floor((totalTime - elapsedTime) / 1000);
+
+                timeInfo.textContent = `${elapsedSeconds}s / ${randomTime}s`;
+
+                if (elapsedTime >= totalTime) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        window.location.href = 'https://www.tu-link.com'; // Redirige al enlace deseado
+                    }, 500); // Esperar medio segundo antes de redirigir
+                }
+            }, 100); // Actualizar cada 100ms
+        });
+    </script>
+</body>
+</html>
