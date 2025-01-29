@@ -241,7 +241,6 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      background: url('../null.jpg') no-repeat center center / cover;
       gap: 1.5rem;
       margin-top: 1.5rem;
       border-radius: 1rem;
@@ -446,7 +445,7 @@
           noticiaCard.classList.add('noticia-card');
           noticiaCard.innerHTML = `
             <div class="dot"></div>
-            <div class="noticia-details" style="background-image: url('../null.jpg'); background-size: cover; background-position: center; background-attachment: fixed; height: 200px;">
+            <div style="background-image: url('../null.jpg') no-repeat center center / cover; height: 200px;">
               <h4>${noticia.title}</h4>
               <p>${noticia.description}</p>
               <button class="instance-btn" onclick="window.location.href='${noticia.link}'"><span class="material-symbols-outlined">open_in_new</span>     Open Instance</button>
