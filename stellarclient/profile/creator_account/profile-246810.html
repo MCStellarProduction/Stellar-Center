@@ -260,9 +260,13 @@
       overflow: hidden;
     }
 
-    .noticia-details img {
-      background-size: cover; 
-      background-position: center;
+    .noticia-details {
+      background-size: cover;  
+      background-position: center; 
+      padding: 20px;               
+      color: white;              
+      height: 200px;              
+      position: relative;
     }
 
     .event-card .event-details h4, .noticia-card .noticia-details h4 {
@@ -452,11 +456,12 @@
           noticiaCard.classList.add('noticia-card');
           noticiaCard.innerHTML = `
             <div class="dot"></div>
-            <div class="noticia-details">
-              <img src="../null.jpg">
-              <h4>${noticia.title}</h4>
-              <p>${noticia.description}</p>
-              <button class="instance-btn" onclick="window.location.href='${noticia.link}'"><span class="material-symbols-outlined">open_in_new</span>     Open Instance</button>
+            <div class="noticia-details" style="background-image: url('${noticia.imageUrl}');">
+               <h4>${noticia.title}</h4>
+               <p>${noticia.description}</p>
+               <button class="instance-btn" onclick="window.location.href='${noticia.link}'">
+               <span class="material-symbols-outlined">open_in_new</span> Open Instance
+              </button>
             </div>
           `;
           noticiaContainer.appendChild(noticiaCard);
