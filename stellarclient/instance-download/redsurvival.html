@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RedSurvival</title>
+    <title>Página con Carga y Redirección</title>
     <style>
         * {
             margin: 0;
@@ -16,7 +16,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: url('https://raw.githubusercontent.com/MCStellarProduction/Stellar-Center/refs/heads/main/stellarclient/storage_img/redsurvival.jpg'); /* Reemplaza con la URL de tu imagen */
+            background-image: url('redsurvival.jpg'); /* Reemplaza con la URL de tu imagen */
             background-size: cover;
             background-position: center;
             font-family: Arial, sans-serif;
@@ -24,19 +24,28 @@
 
         .content {
             text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
         }
 
         .bottom-box {
-            position: fixed;
-            bottom: 0;
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform: translate(-50%, 50%);
             width: 800px;
             height: 200px;
             backdrop-filter: blur(10px);
             border-radius: 10px;
+            border: 2px solid white; /* Borde blanco */
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 10;
+            opacity: 1;
+            transition: opacity 0.5s ease;
         }
 
         .button {
@@ -80,7 +89,7 @@
 </head>
 <body>
     <div class="content">
-        <div class="bottom-box">
+        <div class="bottom-box" id="bottomBox">
             <div>
                 <button class="button" id="startButton">Iniciar Carga</button>
                 <div class="progress-container" id="progressContainer">
@@ -96,8 +105,12 @@
         const progressContainer = document.getElementById('progressContainer');
         const progressBar = document.getElementById('progressBar');
         const timeInfo = document.getElementById('timeInfo');
+        const bottomBox = document.getElementById('bottomBox');
 
         startButton.addEventListener('click', () => {
+            // Hacer desaparecer el botón al ser clickeado
+            startButton.style.display = 'none';
+
             const randomTime = Math.floor(Math.random() * (71)) + 14; // Aleatorio entre 14 y 84 segundos
             const totalTime = randomTime * 1000; // Convertir a milisegundos
             let elapsedTime = 0;
@@ -123,6 +136,13 @@
                     }, 500); // Esperar medio segundo antes de redirigir
                 }
             }, 100); // Actualizar cada 100ms
+
+            // Animación más suave para la barra
+            progressBar.style.transition = 'width 1s ease-in-out';
+            bottomBox.style.transition = 'opacity 0.5s ease';
+            bottomBox.style.opacity = '0'; // Desaparecer el cuadro con el botón
+
+            // Mostrar la barra de carga y tiempo en pantalla
         });
     </script>
 </body>
