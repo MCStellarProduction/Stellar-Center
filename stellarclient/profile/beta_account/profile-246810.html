@@ -402,6 +402,8 @@
     }
 
     window.onload = function() {
+      redirigirSiEsCelular();
+      
       // Ocultar el loader una vez que la página esté completamente cargada
       const loader = document.querySelector('.loader');
       loader.style.display = 'none';
@@ -470,9 +472,7 @@
   if (window.innerWidth <= 800 && /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent)) {
     window.location.href = "https://www.mcstellar.lat/mobile/home-page";
   }
-}
-
-window.onload = redirigirSiEsCelular;
+    }
   </script>
 
 </body>
