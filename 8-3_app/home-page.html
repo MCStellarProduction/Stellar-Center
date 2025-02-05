@@ -6,10 +6,9 @@
   <title>Log In - 8-3 App</title>
   <link rel="icon" href="icon.jpg" type="image/jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=lockmanage_accountspersonlogin" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=block" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    /* Diseño general */
     body {
       user-select: none;
       background: url('log-in_bg.jpg') no-repeat center center / cover; 
@@ -24,14 +23,13 @@
     }
 
     .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24;
     }
 
-    /* Contenedor de login */
     .login-container {
       backdrop-filter: blur(10px);
       padding: 40px;
@@ -57,7 +55,6 @@
       }
     }
 
-    /* Títulos y textos */
     .login-container h1 {
       font-size: 36px;
       margin-bottom: 20px;
@@ -79,38 +76,32 @@
       color: white;
     }
 
-    /* Estilos de los campos de entrada */
-    /* Estilos de los campos de entrada */
     .input-field {
       width: 330px;
       height: 45px;
       margin: 10px;
       font-size: 16px;
       font-weight: 500;
-      font-color: #fff;
+      color: #fff;
       border-radius: 16px;
-      border: 3px solid rgba(255, 255, 255, 1); /* Borde semitransparente blanco */
-      background-color: transparent; /* Mantén el fondo transparente */
-      color: #fff; /* Color del texto blanco */
+      border: 3px solid rgba(255, 255, 255, 1);
+      background-color: transparent;
+      color: #fff;
       transition: all 0.3s ease;
-      left: 50%;
       text-align: center;
     }
 
-    /* Cuando el campo está enfocado */
     .input-field:focus {
-      border-color: #ffd54d; /* Cambio de color de borde al hacer foco */
-      outline: none; /* Elimina el borde de enfoque predeterminado */
-      background-color: transparent; /* Fondo transparente al estar enfocado */
-      color: #fff; /* Color de texto blanco en el enfoque */
+      border-color: #ffd54d;
+      outline: none;
+      background-color: transparent;
+      color: #fff;
     }
-
 
     .input-field::placeholder {
       color: #fff;
     }
 
-    /* Botón de envío */
     .submit-btn {
       width: 330px;
       height: 45px;
@@ -134,7 +125,6 @@
       transform: translateY(1px);
     }
 
-    /* Enlace de olvido de contraseña */
     .forgot-password {
       font-size: 14px;
       color: #fff;
@@ -147,7 +137,6 @@
       text-decoration: underline;
     }
 
-    /* Mensaje de error o éxito */
     .status-message {
       color: #fff;
       font-size: 16px;
@@ -193,7 +182,6 @@
       "TestAccount456;acd56": "https://mcstellarproduction.github.io/8-3_web/uidd/token-102/server-176/8-3_app-222000",
     };
 
-    // Mostrar mensaje de estado
     function showStatusMessage(message, type) {
       const statusMessage = document.getElementById('status-message');
       statusMessage.textContent = message;
@@ -209,36 +197,30 @@
       }, 3000);
     }
 
-    // Verificar las credenciales de usuario
     function checkCredentials(username, password) {
       const key = `${username};${password}`;
       return credentials[key];
     }
 
-    // Evento para el botón de iniciar sesión
     document.getElementById('submit-btn').addEventListener('click', function() {
       var username = document.getElementById('username').value;
       var password = document.getElementById('password').value;
 
-      // Validación de campos vacíos
       if (!username || !password) {
         showStatusMessage("Por favor, complete todos los campos.", "error");
         return;
       }
 
-      // Verificar las credenciales
       const redirectUrl = checkCredentials(username, password);
 
       if (redirectUrl) {
         showStatusMessage("¡Inicio de sesión exitoso!", "success");
 
-        // Guardar el usuario en LocalStorage
         localStorage.setItem('loggedInUser', `${username};${password}`);
 
-        // Redirigir a la página correspondiente después de 2 segundos
         setTimeout(function() {
-          window.location.href = redirectUrl; // Redirigir a la URL del usuario
-        }, 2000); // Esperar 2 segundos para mostrar el mensaje
+          window.location.href = redirectUrl;
+        }, 2000);
       } else {
         showStatusMessage("Credenciales incorrectas, por favor intente de nuevo.", "error");
       }
