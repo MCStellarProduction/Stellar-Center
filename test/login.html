@@ -74,12 +74,31 @@
             background-color: red;
         }
     </style>
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+    <div class="login-container">
+        <h2>Iniciar sesión</h2>
+        <form onsubmit="event.preventDefault(); verificarCredenciales();">
+            <label for="usuario">Usuario:</label><br>
+            <input type="text" id="usuario" name="usuario" required><br><br>
+            <label for="contrasena">Contraseña:</label><br>
+            <input type="password" id="contrasena" name="contrasena" required><br><br>
+            <button type="submit">Ingresar</button>
+        </form>
+    </div>
+
     <script>
-        const credenciales = [
-            { usuario: "admin", contrasena: "12345", url: "https://www.ejemplo1.com" },
-            { usuario: "usuario1", contrasena: "abcde", url: "https://www.ejemplo2.com" },
-            { usuario: "test", contrasena: "password", url: "https://www.ejemplo3.com" }
-        ];
+        let credenciales = [];
+
+        function cargarCredenciales() {
+            fetch('credenciales.json')
+                .then(response => response.json())
+                .then(data => {
+                    credenciales = data;
+                })
+                .catch(error => console.error("Error al cargar las credenciales:", error));
+        }
 
         function verificarCredenciales() {
             const usuario = document.getElementById("usuario").value;
@@ -114,19 +133,10 @@
                 overlay.style.display = "none";
             }, 5000);
         }
+
+        window.onload = function() {
+            cargarCredenciales();
+        };
     </script>
-</head>
-<body>
-    <div class="overlay" id="overlay"></div>
-    <div class="login-container">
-        <h2>Iniciar sesión</h2>
-        <form onsubmit="event.preventDefault(); verificarCredenciales();">
-            <label for="usuario">Usuario:</label><br>
-            <input type="text" id="usuario" name="usuario" required><br><br>
-            <label for="contrasena">Contraseña:</label><br>
-            <input type="password" id="contrasena" name="contrasena" required><br><br>
-            <button type="submit">Ingresar</button>
-        </form>
-    </div>
 </body>
 </html>
