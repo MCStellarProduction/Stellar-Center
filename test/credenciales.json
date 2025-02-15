@@ -1,0 +1,5 @@
+[
+    { "usuario": "admin", "contrasena": "12345", "url": "https://www.ejemplo1.com" },
+    { "usuario": "usuario1", "contrasena": "abcde", "url": "https://www.ejemplo2.com" },
+    { "usuario": "test", "contrasena": "password", "url": "https://www.ejemplo3.com" }
+]
