@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .welcome-container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .welcome-container h2 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <h2>Bienvenido, <span id="username"></span></h2>
+        <p>Has iniciado sesión correctamente. Ahora puedes navegar por tu cuenta.</p>
+    </div>
+
+    <script>
+        function getCookie(name) {
+            const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            return match ? match[2] : null;
+        }
+
+        window.onload = function() {
+            const usuario = getCookie('usuario');
+            if (usuario) {
+                document.getElementById('username').textContent = usuario;
+                const currentUrl = window.location.href;
+                const newUrl = currentUrl.split('?')[0] + '?user=' + encodeURIComponent(usuario);
+                window.history.replaceState({}, '', newUrl);
+            } else {
+                window.location.href = '/'; // Redirige a la página de login si no hay sesión activa
+            }
+        };
+    </script>
+</body>
+</html>
+
