@@ -100,6 +100,10 @@
                 .catch(error => console.error("Error al cargar las credenciales:", error));
         }
 
+        function generarToken() {
+            return Math.random().toString(36).substr(2, 9);
+        }
+
         function verificarCredenciales() {
             const usuario = document.getElementById("usuario").value;
             const contrasena = document.getElementById("contrasena").value;
