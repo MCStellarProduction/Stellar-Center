@@ -92,7 +92,7 @@
         let credenciales = [];
 
         function cargarCredenciales() {
-            fetch('credenciales.json')
+            fetch('credenciales.json?' + new Date().getTime())
                 .then(response => response.json())
                 .then(data => {
                     credenciales = data;
@@ -136,6 +136,7 @@
 
         window.onload = function() {
             cargarCredenciales();
+            setInterval(cargarCredenciales, 10000);
         };
     </script>
 </body>
