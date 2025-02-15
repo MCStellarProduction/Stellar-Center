@@ -47,7 +47,7 @@
                 const newUrl = currentUrl.split('?')[0] + '?user=' + encodeURIComponent(usuario);
                 window.history.replaceState({}, '', newUrl);
             } else {
-                window.location.href = '/'; // Redirige a la página de login si no hay sesión activa
+                window.location.href = '/test/login'; // Redirige a la página de login si no hay sesión activa
             }
         };
     </script>
