@@ -123,18 +123,6 @@
       transform: translateY(1px);
     }
 
-    .forgot-password {
-      font-size: 14px;
-      color: #fff;
-      margin-top: 10px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .forgot-password:hover {
-      text-decoration: underline;
-    }
-
     .status-message {
       color: #fff;
       font-size: 16px;
@@ -173,54 +161,75 @@
   </div>
 
   <script>
-    const credentials = {
-      "TestAccount456;acd56": "https://www.mcstellar.lat/stellarclient/profile/creator_account/profile-246810",
-      "Sharingel;afi123": "https://www.mcstellar.lat/stellarclient/profile/creator_account/profile-187637"
-    };
+    let credenciales = [];
 
-    function showStatusMessage(message, type) {
-      const statusMessage = document.getElementById('status-message');
-      statusMessage.textContent = message;
-      statusMessage.className = `status-message ${type}`;
-      statusMessage.style.display = 'block';
-      statusMessage.style.opacity = '1';
-
-      setTimeout(function() {
-        statusMessage.style.opacity = '0';
-        setTimeout(function() {
-          statusMessage.style.display = 'none';
-        }, 300);
-      }, 3000);
+    function cargarCredenciales() {
+      fetch('credenciales.json?' + new Date().getTime())
+        .then(response => response.json())
+        .then(data => {
+          credenciales = data;
+        })
+        .catch(error => console.error("Error al cargar las credenciales:", error));
     }
 
-    function checkCredentials(username, password) {
+    function verificarCredenciales() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const overlay = document.getElementById("status-message");
+
+      let credencialValida = false;
+      let urlRedireccion = '';
+
+      // Check against the preloaded credentials from JSON
+      for (let i = 0; i < credenciales.length; i++) {
+        if (credenciales[i].usuario === username && credenciales[i].contrasena === password) {
+          credencialValida = true;
+          urlRedireccion = credenciales[i].url;
+          break;
+        }
+      }
+
+      // Now check against hardcoded credentials
+      const hardcodedCredentials = {
+        "TestAccount456;acd56": "https://www.mcstellar.lat/stellarclient/profile/creator_account/profile-246810",
+        "Sharingel;afi123": "https://www.mcstellar.lat/stellarclient/profile/creator_account/profile-187637"
+      };
+
       const key = `${username};${password}`;
-      return credentials[key];
+      const redirectUrl = hardcodedCredentials[key] || urlRedireccion;
+
+      if (credencialValida || redirectUrl) {
+        document.cookie = `usuario=${username}; path=/; max-age=86400`;
+        document.cookie = `url=${redirectUrl}; path=/; max-age=86400`;
+        overlay.textContent = "Credenciales correctas";
+        overlay.className = "overlay success";
+        overlay.style.display = "block";
+        setTimeout(() => {
+          window.location.href = `/test/home-page?user=${encodeURIComponent(username)}`;
+        }, 3000);
+      } else {
+        overlay.textContent = "Usuario o contraseña incorrectos";
+        overlay.className = "overlay error";
+        overlay.style.display = "block";
+      }
     }
 
     document.getElementById('submit-btn').addEventListener('click', function() {
-      var username = document.getElementById('username').value;
-      var password = document.getElementById('password').value;
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
 
       if (!username || !password) {
         showStatusMessage("Por favor, complete todos los campos.", "error");
         return;
       }
 
-      const redirectUrl = checkCredentials(username, password);
-
-      if (redirectUrl) {
-        showStatusMessage("¡Inicio de sesión exitoso!", "success");
-
-        localStorage.setItem('loggedInUser', `${username};${password}`);
-
-        setTimeout(function() {
-          window.location.href = redirectUrl;
-        }, 2000);
-      } else {
-        showStatusMessage("Credenciales incorrectas, por favor intente de nuevo.", "error");
-      }
+      verificarCredenciales();
     });
+
+    window.onload = function() {
+      cargarCredenciales();
+      setInterval(cargarCredenciales, 10000);
+    };
   </script>
 
 </body>
