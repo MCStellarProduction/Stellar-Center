@@ -21,7 +21,26 @@
       justify-content: center;
       align-items: center;
     }
-
+    .status-message {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+      padding: 10px;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .success {
+      background-color: #4caf50;
+    }
+    .error {
+      background-color: #f44336;
+    }
     .login-container {
       backdrop-filter: blur(10px);
       padding: 40px;
@@ -35,7 +54,6 @@
       transform: scale(0.95);
       animation: fadeIn 1s ease-out forwards;
     }
-
     @keyframes fadeIn {
       0% {
         opacity: 0;
@@ -46,7 +64,6 @@
         transform: translateY(0);
       }
     }
-
     .login-container h1 {
       font-size: 36px;
       margin-bottom: 20px;
@@ -54,7 +71,6 @@
       font-weight: 600;
       animation: fadeInText 1s 0.5s forwards;
     }
-
     .login-container p {
       font-size: 16px;
       color: #fff;
@@ -62,12 +78,6 @@
       font-weight: 300;
       animation: fadeInText 1s 0.7s forwards;
     }
-
-    .login-container span {
-      font-size: 1.6rem;
-      color: white;
-    }
-
     .input-field {
       width: 330px;
       height: 45px;
@@ -83,18 +93,15 @@
       left: 50%;
       text-align: center;
     }
-
     .input-field:focus {
       border-color: #ffd54d;
       outline: none;
       background-color: transparent;
       color: #fff;
     }
-
     .input-field::placeholder {
       color: #fff;
     }
-
     .submit-btn {
       width: 330px;
       height: 45px;
@@ -106,44 +113,17 @@
       cursor: pointer;
       font-weight: 600;
       transition: all 0.3s ease;
-      animation: fadeInText 1s 1.3s forwards;
     }
-
     .submit-btn span {
       font-size: 1.6rem;
       color: black;
     }
-
     .submit-btn:hover {
       background-color: #fff;
       transform: translateY(-2px);
     }
-
     .submit-btn:active {
       transform: translateY(1px);
-    }
-
-    .status-message {
-      color: #fff;
-      font-size: 16px;
-      font-weight: 600;
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 10px 20px;
-      border-radius: 5px;
-      display: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .success {
-      background-color: #4caf50;
-    }
-
-    .error {
-      background-color: #f44336;
     }
   </style>
 </head>
@@ -154,81 +134,86 @@
   <div class="login-container">
     <span class="material-symbols-outlined">passkey</span>
     <h1>¡¡ Welcome !!</h1>
-    <p>Enter with you're Stellar Client Account.</p>
+    <p>Enter with your Stellar Client Account.</p>
     <span class="material-symbols-outlined">person</span> <input class="input-field" type="text" id="username" placeholder="User" required>
     <span class="material-symbols-outlined">lock</span> <input class="input-field" type="password" id="password" placeholder="Password" required>
     <button class="submit-btn" id="submit-btn"><span class="material-symbols-outlined">login</span> Login</button>
   </div>
 
   <script>
-    let credenciales = [];
+    let credentials = {};
 
     function cargarCredenciales() {
       fetch('credenciales.json?' + new Date().getTime())
         .then(response => response.json())
         .then(data => {
-          credenciales = data;
+          credentials = data;
         })
         .catch(error => console.error("Error al cargar las credenciales:", error));
     }
 
-    function verificarCredenciales() {
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-      const overlay = document.getElementById("status-message");
+    function showStatusMessage(message, type) {
+      const statusMessage = document.getElementById('status-message');
+      statusMessage.textContent = message;
+      statusMessage.className = `status-message ${type}`;
+      statusMessage.style.display = 'block';
+      statusMessage.style.opacity = '1';
 
-      let credencialValida = false;
-      let urlRedireccion = '';
+      setTimeout(function() {
+        statusMessage.style.opacity = '0';
+        setTimeout(function() {
+          statusMessage.style.display = 'none';
+        }, 300);
+      }, 3000);
+    }
 
-      // Check against the preloaded credentials from JSON
-      for (let i = 0; i < credenciales.length; i++) {
-        if (credenciales[i].usuario === username && credenciales[i].contrasena === password) {
-          credencialValida = true;
-          urlRedireccion = credenciales[i].url;
-          break;
-        }
-      }
-
-      // Now check against hardcoded credentials
-      const hardcodedCredentials = {
-        "TestAccount456;acd56": "https://www.mcstellar.lat/stellarclient/profile/creator_account/profile-246810",
-        "Sharingel;afi123": "https://www.mcstellar.lat/stellarclient/profile/creator_account/profile-187637"
-      };
-
+    function checkCredentials(username, password) {
       const key = `${username};${password}`;
-      const redirectUrl = hardcodedCredentials[key] || urlRedireccion;
+      return credentials[key];
+    }
 
-      if (credencialValida || redirectUrl) {
-        document.cookie = `usuario=${username}; path=/; max-age=86400`;
-        document.cookie = `url=${redirectUrl}; path=/; max-age=86400`;
-        overlay.textContent = "Credenciales correctas";
-        overlay.className = "overlay success";
-        overlay.style.display = "block";
-        setTimeout(() => {
-          window.location.href = `/test/home-page?user=${encodeURIComponent(username)}`;
-        }, 3000);
-      } else {
-        overlay.textContent = "Usuario o contraseña incorrectos";
-        overlay.className = "overlay error";
-        overlay.style.display = "block";
-      }
+    function setCookies(username, redirectUrl) {
+      document.cookie = `usuario=${username}; path=/; max-age=86400`;
+      document.cookie = `url=${redirectUrl}; path=/; max-age=86400`;
     }
 
     document.getElementById('submit-btn').addEventListener('click', function() {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
 
       if (!username || !password) {
         showStatusMessage("Por favor, complete todos los campos.", "error");
         return;
       }
 
-      verificarCredenciales();
+      const redirectUrl = checkCredentials(username, password);
+
+      if (redirectUrl) {
+        showStatusMessage("¡Inicio de sesión exitoso!", "success");
+
+        setCookies(username, redirectUrl);
+
+        setTimeout(function() {
+          window.location.href = `https://www.mcstellar.lat/test/prox-update/home?=${username}`;
+        }, 2000);
+      } else {
+        showStatusMessage("Credenciales incorrectas, por favor intente de nuevo.", "error");
+      }
     });
+
+    function checkLoginStatus() {
+      const cookies = document.cookie.split('; ');
+      const userCookie = cookies.find(cookie => cookie.startsWith('usuario='));
+      if (userCookie) {
+        const username = userCookie.split('=')[1];
+        window.location.href = `https://www.mcstellar.lat/test/prox-update/home?=${username}`;
+      }
+    }
 
     window.onload = function() {
       cargarCredenciales();
       setInterval(cargarCredenciales, 10000);
+      checkLoginStatus();
     };
   </script>
 
