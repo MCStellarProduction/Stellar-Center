@@ -64,7 +64,7 @@
             const usuario = getCookie('usuario');
             const token = getCookie('token');
 
-            if (usuario && token) {
+            if (usuario) {
                 document.getElementById('username').textContent = usuario;
 
                 const configuracion = localStorage.getItem('configuracion');
