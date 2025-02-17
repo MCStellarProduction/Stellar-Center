@@ -474,6 +474,46 @@
     window.location.href = "https://www.mcstellar.lat/mobile/home-page";
   }
     }
+
+    function getCookie(name) {
+            const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            return match ? match[2] : null;
+        }
+
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function guardarConfiguracion() {
+            const configuracion = prompt("Introduce una configuración personalizada:", "Mi configuración");
+            if (configuracion) {
+                localStorage.setItem('configuracion', configuracion);
+                document.getElementById("config").textContent = configuracion;
+            }
+        }
+
+        window.onload = function() {
+            const usuario = getCookie('usuario');
+            const token = getCookie('token');
+
+            if (usuario) {
+                document.getElementById('username').textContent = usuario;
+
+                const configuracion = localStorage.getItem('configuracion');
+                if (configuracion) {
+                    document.getElementById('config').textContent = configuracion;
+                }
+
+                const queryUser = getQueryParameter('user');
+                if (queryUser && queryUser !== usuario) {
+                    alert('Usuario no válido o sesión expirada');
+                    window.location.href = '/test/prox-update/login';
+                }
+            } else {
+                window.location.href = '/test/prox-update/login';
+            }
+        };
   </script>
 
 </body>
