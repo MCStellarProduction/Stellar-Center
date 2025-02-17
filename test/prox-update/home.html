@@ -401,21 +401,6 @@
       }
     }
 
-    window.onload = function() {
-      
-      redirigirSiEsCelular();
-      
-      // Ocultar el loader una vez que la página esté completamente cargada
-      const loader = document.querySelector('.loader');
-      loader.style.display = 'none';
-
-      // Mostrar la sección del menú por defecto
-      showSection('menu');
-
-      // Cargar eventos y noticias
-      loadData();
-    };
-
     function loadData() {
       // Aquí debes poner la URL correcta del archivo JSON en tu repositorio de GitHub Pages
       fetch('https://www.mcstellar.lat/stellarclient/storage_instance/data-creator.json')
@@ -494,6 +479,19 @@
         }
 
         window.onload = function() {
+
+          redirigirSiEsCelular();
+      
+      // Ocultar el loader una vez que la página esté completamente cargada
+      const loader = document.querySelector('.loader');
+      loader.style.display = 'none';
+
+      // Mostrar la sección del menú por defecto
+      showSection('menu');
+
+      // Cargar eventos y noticias
+      loadData();
+          
             const usuario = getCookie('usuario');
             const token = getCookie('token');
 
@@ -513,6 +511,7 @@
             } else {
                 window.location.href = '/test/prox-update/login';
             }
+          
         };
   </script>
 
