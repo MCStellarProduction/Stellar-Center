@@ -380,6 +380,10 @@
     <p>Creator</p>
     <span class="material-symbols-outlined">school</span> <h3>Access Type</h3>
     <p>All Infomation</p>
+
+    <button class="instance-btn" id="logout-btn">
+        <span class="material-symbols-outlined">exit_to_app</span> Log Out
+    </button>
   </div>
 
   <div id="calendario" class="content-section">
@@ -389,6 +393,19 @@
   </div>
 
   <script>
+
+    function logout() {
+    // Eliminar las cookies de sesión
+    document.cookie = 'usuario=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
+
+    // Redirigir al login
+    window.location.href = '/test/prox-update/login';
+}
+
+// Asignar el evento al botón de cerrar sesión
+document.getElementById('logout-btn').addEventListener('click', logout);
+
     function showSection(sectionId) {
       const sections = document.querySelectorAll('.content-section');
       sections.forEach(section => {
