@@ -222,10 +222,23 @@
     }
 
     window.onload = function() {
-      cargarCredenciales();
-      setInterval(cargarCredenciales, 10000);
-      checkLoginStatus();
-    };
+    const usuario = getCookie('usuario');
+    const token = getCookie('token');
+
+    if (usuario) {
+        
+        window.location.href = '/home'; 
+    } else {
+       
+        document.querySelector('.login-container').style.display = 'block';
+    }
+};
+
+    
+function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
+}
   </script>
 
 </body>
