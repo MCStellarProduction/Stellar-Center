@@ -204,7 +204,7 @@
         setCookies(username, redirectUrl);
 
         setTimeout(function() {
-          window.location.href = `https://www.mcstellar.lat/test/prox-update/home${username}`;
+          window.location.href = `https://www.mcstellar.lat/test/prox-update/home?=${username}`;
         }, 2000);
       } else {
         showStatusMessage("Credenciales incorrectas, por favor intente de nuevo.", "error");
