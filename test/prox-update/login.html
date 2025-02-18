@@ -152,16 +152,15 @@
   </div>
 
   <script>
-    let credentials = {};
-
-    function cargarCredenciales() {
-      fetch('credenciales.json?' + new Date().getTime())
-        .then(response => response.json())
-        .then(data => {
-          credentials = data;
-        })
-        .catch(error => console.error("Error al cargar las credenciales:", error));
+    function checkCredentials(username, password) {
+      const key = `${username};${password}`;
+      return credentials[key];
     }
+
+    const credentials = {
+      "TestAccount456;acd56": "https://www.mcstellar.lat/test/prox-update/home?=usuario1",
+      "usuario2;password2": "https://www.mcstellar.lat/test/prox-update/home?=usuario2"
+    };
 
     function showStatusMessage(message, type) {
       const statusMessage = document.getElementById('status-message');
@@ -205,7 +204,7 @@
         setCookies(username, redirectUrl);
 
         setTimeout(function() {
-          window.location.href = `https://www.mcstellar.lat/test/prox-update/home?=${username}`;
+          window.location.href = `https://www.mcstellar.lat/test/prox-update/home${username}`;
         }, 2000);
       } else {
         showStatusMessage("Credenciales incorrectas, por favor intente de nuevo.", "error");
